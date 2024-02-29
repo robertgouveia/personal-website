@@ -20,6 +20,7 @@ nav section div {
     justify-content: center;
     align-items: start;
     gap: 4px;
+    font-size: 12px;
 }
 
 .nav_list.active{

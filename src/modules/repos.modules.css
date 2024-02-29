@@ -1,0 +1,104 @@
+.repo-container {
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+}
+
+.repo-card {
+    width: 100%;
+    border: 1px solid #cccccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+.repo-card-upper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+    padding: 2px 2px 8px;
+}
+
+.repo-card-lower {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    padding: 8px 2px 0;
+    gap: 16px;
+}
+.repo-card-lower .description {
+    height: 100%;
+    font-family: Roboto, sans-serif;
+    color: #333333;
+}
+
+.repo-card-lower .repo-card-footer {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.repo-card-lower .tags-container {
+    display: flex;
+    gap: 4px;
+}
+
+.tag {
+    padding: 1px 8px 2px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+}
+
+.repo-card-upper a {
+    padding: 2px 16px;
+    background: black;
+}
+.repo-card-lower .timestamp {
+    font-size: 12px;
+    color: #cccccc;
+}
+
+.repo-card-upper i {
+    color: white;
+}
+
+.ui, .cli {
+    border: 1px dashed #333333;
+}
+.react {
+    border: 1px solid dodgerblue;
+    color: dodgerblue;
+}
+.javascript {
+    border: 1px solid orange;
+    color: orange;
+}
+.portfolio {
+    border: 1px solid red;
+    color: red;
+}
+
+.load-button {
+    width: 100%;
+    padding: 8px 0;
+    border: 1px solid #555555;
+    color: #555555;
+    background: transparent;
+    font-family: Roboto, sans-serif;
+}
+
+.load-button.complete {
+    color: #cccccc;
+    border-color: #cccccc;
+}
