@@ -53,11 +53,19 @@
     display: flex;
     gap: 4px;
 }
+.filter-tags {
+    display: flex;
+    gap: 4px;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
 
 .tag {
     padding: 1px 8px 2px;
     border: 1px solid #cccccc;
     border-radius: 8px;
+    text-align: center;
 }
 
 .repo-card-upper a {

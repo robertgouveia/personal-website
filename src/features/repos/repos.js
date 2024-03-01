@@ -1,45 +1,59 @@
-import {useSelector} from "react-redux";
-import {allRepos} from "./reposSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {clearFilter, filter, loadMore, selectReposToShow} from "./reposSlice";
 import Repo from "../../components/repo";
 import '../../modules/repos.modules.css';
-import {useState} from "react";
 
 const Repos = () => {
-    const { isLoading } = useSelector((state) => state.repos)
-    const repos = useSelector(allRepos)
-    const [load, setLoad] = useState(3);
+    const { isLoading, load, repos } = useSelector((state) => state.repos)
+    const loadedRepos = useSelector(selectReposToShow)
+    const filteredRepos = useSelector(state => state.repos.filtered);
+    const dispatch = useDispatch()
 
-    const onClickHandler = (e) => {
-        if(load + 3 > repos.length){
-            e.target.setAttribute('disabled', true)
-            setLoad(repos.length)
-            e.target.innerHTML = 'All Loaded'
-            e.target.classList.add('complete')
-            return
+    const onFilterHandler = (e) => {
+        // if(load + 3 >= filteredRepos.length){
+        //     e.target.setAttribute('disabled', true)
+        //     dispatch(loadMore(filteredRepos.length))
+        //     e.target.innerHTML = 'All Loaded'
+        //     e.target.classList.add('complete')
+        //     return
+        // }
+        // if(e.target.classList.contains('complete')){
+        //     e.target.classList.remove('complete')
+        // }
+        dispatch(loadMore())
+    }
+
+    const OnFilter = (e) => {
+        if(e.target.id){
+            dispatch(filter(e.target.id))
+            dispatch(loadMore(3))
+        } else {
+             dispatch(clearFilter())
         }
-        if(e.target.hasAttribute('disabled')){
-            e.target.removeAttribute('default')
-        }
-        if(e.target.classList.contains('complete')){
-            e.target.classList.remove('complete')
-        }
-        setLoad(load + 3)
     }
 
     if(isLoading){
-        return(
+        return (
             <>
-                Loading...
+                TODO: Make animation
             </>
         )
     }
 
     return (
         <div className='repo-container'>
-            {repos.slice(0, load).map((repo, index) =>
+            <div className='filter-tags'>
+                <div onClick={OnFilter} className={'tag javascript'} id='javascript'>javascript</div>
+                <div onClick={OnFilter} className={'tag react'} id='react'>react</div>
+                <div onClick={OnFilter} className={'tag portfolio'} id='portfolio'>portfolio</div>
+                <div onClick={OnFilter} className={'tag'}>x</div>
+            </div>
+            {filteredRepos.length > 0 ? filteredRepos.slice(0, load).map((repo, index) =>
+                (<Repo repo={repo} index={index} key={index}/>)
+            ): loadedRepos.map((repo, index) =>
                 (<Repo repo={repo} index={index} key={index}/>)
             )}
-            <button onClick={onClickHandler} className='load-button'>Load More</button>
+            <button onClick={onFilterHandler} className='load-button'>Load More</button>
         </div>
     )
 }

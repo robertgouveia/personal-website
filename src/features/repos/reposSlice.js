@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import fetchRepos from "./fetchRepos";
 
 //actions
@@ -13,13 +13,29 @@ export const loadRepos = createAsyncThunk(
 //reducer
 const initialState = {
     repos: [],
+    filtered: [],
     isLoading: false,
-    hasError: false
+    hasError: false,
+    load: 3,
 }
 const reposSlice = createSlice({
     name: 'repos',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        loadMore: (state, action) => {
+            action.payload ? state.load = action.payload : state.load += 3;
+        },
+        filter: (state, action) => ({
+            ...state,
+            filtered: state.repos.filter((repo) => repo.topics.includes(action.payload ? action.payload : state.repos.repos)),
+            load: 3
+        }),
+        clearFilter: (state) => ({
+            ...state,
+            filtered: [],
+            load: 3
+        })
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loadRepos.pending, (state) => {
@@ -27,6 +43,7 @@ const reposSlice = createSlice({
             state.hasError = false;
         })
         .addCase(loadRepos.fulfilled, (state, action) => {
+            state.load = 3
             state.repos = action.payload;
             state.isLoading = false;
             state.hasError = false;
@@ -34,6 +51,17 @@ const reposSlice = createSlice({
     }
 })
 
-export const allRepos = (state) => state.repos.repos;
+export const allRepos = state => state.repos.repos;
+export const selectLoad = state => state.repos.load;
+
+export const {loadMore, filter, clearFilter} = reposSlice.actions;
+
+export const selectReposToShow = createSelector(
+    [selectLoad, allRepos],
+    (loadCount, loadedRepos) => {
+        return loadedRepos.slice(0, loadCount);
+    }
+);
+
 
 export default reposSlice.reducer;
