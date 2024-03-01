@@ -2,24 +2,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {clearFilter, filter, loadMore, selectReposToShow} from "./reposSlice";
 import Repo from "../../components/repo";
 import '../../modules/repos.modules.css';
+import '../../modules/skeleton.modules.css';
+import SkeletonRepos from "../../components/skeletonRepos";
 
 const Repos = () => {
-    const { isLoading, load, repos } = useSelector((state) => state.repos)
+    const { isLoading, load } = useSelector((state) => state.repos)
     const loadedRepos = useSelector(selectReposToShow)
     const filteredRepos = useSelector(state => state.repos.filtered);
     const dispatch = useDispatch()
 
-    const onFilterHandler = (e) => {
-        // if(load + 3 >= filteredRepos.length){
-        //     e.target.setAttribute('disabled', true)
-        //     dispatch(loadMore(filteredRepos.length))
-        //     e.target.innerHTML = 'All Loaded'
-        //     e.target.classList.add('complete')
-        //     return
-        // }
-        // if(e.target.classList.contains('complete')){
-        //     e.target.classList.remove('complete')
-        // }
+    const onFilterHandler = () => {
         dispatch(loadMore())
     }
 
@@ -34,9 +26,7 @@ const Repos = () => {
 
     if(isLoading){
         return (
-            <>
-                TODO: Make animation
-            </>
+            <SkeletonRepos/>
         )
     }
 
@@ -50,7 +40,7 @@ const Repos = () => {
             </div>
             {filteredRepos.length > 0 ? filteredRepos.slice(0, load).map((repo, index) =>
                 (<Repo repo={repo} index={index} key={index}/>)
-            ): loadedRepos.map((repo, index) =>
+            ) : loadedRepos.map((repo, index) =>
                 (<Repo repo={repo} index={index} key={index}/>)
             )}
             <button onClick={onFilterHandler} className='load-button'>Load More</button>

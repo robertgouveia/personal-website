@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {loadRepos} from "../features/repos/reposSlice";
 import {router} from "./router";
 import {RouterProvider} from "react-router-dom";
+import Navbar from "../components/navbar";
 
 function App() {
     const dispatch = useDispatch()
