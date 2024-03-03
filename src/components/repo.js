@@ -5,15 +5,15 @@ const Repo = ({repo}) => {
         <div className='repo-card'>
             <section className='repo-card-upper'>
                 <h1>{repo.name}</h1>
-                <a href={repo.html_url}><i className="fa-brands fa-github"></i></a>
+                <a href={repo.html_url}><i className="fa-brands fa-github"></i>Github</a>
             </section>
             <section className='repo-card-lower'>
                 <p className='description'>{repo.description}</p>
                 <div className='repo-card-footer'>
                     <div className='tags-container'>
-                        {repo.topics.map(topic => {
+                        {repo.topics.map((topic, index) => {
                             return (
-                                <div className={`tag ${topic}`}>{topic}</div>
+                                <div className={`tag ${topic}`} key={index}>{topic}</div>
                             )
                         })}
                     </div>

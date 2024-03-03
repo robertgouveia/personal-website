@@ -12,6 +12,7 @@ export const loadRepos = createAsyncThunk(
 
 //reducer
 const initialState = {
+    storage: [],
     repos: [],
     isLoading: false,
     hasError: false,
@@ -23,6 +24,9 @@ const reposSlice = createSlice({
     reducers: {
         loadMore: (state, action) => {
             action.payload ? state.load = action.payload : state.load += 3;
+        },
+        resetRepos: (state) => {
+            state.repos = state.storage
         },
         filter: (state, action) => ({
             ...state,
@@ -43,7 +47,8 @@ const reposSlice = createSlice({
         })
         .addCase(loadRepos.fulfilled, (state, action) => {
             state.load = 3
-            state.repos = action.payload;
+            state.storage = action.payload;
+            state.repos = state.storage;
             state.isLoading = false;
             state.hasError = false;
         })
@@ -53,7 +58,7 @@ const reposSlice = createSlice({
 export const allRepos = state => state.repos.repos;
 export const selectLoad = state => state.repos.load;
 export const filteredRepos = state => state.repos.filtered;
-export const {loadMore, filter, clearFilter} = reposSlice.actions;
+export const {loadMore, filter, clearFilter, resetRepos} = reposSlice.actions;
 export const selectReposToShow = createSelector(
     [selectLoad, allRepos],
     (loadCount, loadedRepos) => {

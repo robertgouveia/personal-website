@@ -1,10 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
-import {clearFilter, filter, loadMore, loadRepos, selectReposToShow} from "./reposSlice";
+import {filter, loadMore, selectReposToShow, resetRepos} from "./reposSlice";
 import Repo from "../../components/repo";
 import '../../modules/repos.modules.css';
 import '../../modules/skeleton.modules.css';
 import SkeletonRepos from "../../components/skeletonRepos";
-import repo from "../../components/repo";
 
 const Repos = () => {
     const { isLoading, repos, load } = useSelector((state) => state.repos)
@@ -20,7 +19,6 @@ const Repos = () => {
             }
         }
         else {
-            console.log('hit incomplete')
             if(e.target.classList.contains('complete')){
                 e.target.classList.remove('complete')
             }
@@ -29,7 +27,7 @@ const Repos = () => {
     }
 
     const OnFilter = async (e) => {
-        await dispatch(loadRepos())
+        await dispatch(resetRepos())
         if(e.target.id){
             dispatch(filter(e.target.id))
         }

@@ -69,8 +69,15 @@
 }
 
 .repo-card-upper a {
-    padding: 2px 16px;
     background: black;
+    padding: 2px 8px;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+    color: #eeeeee;
+    text-decoration: none;
 }
 .repo-card-lower .timestamp {
     font-size: 12px;
