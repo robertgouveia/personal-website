@@ -32,11 +32,6 @@ const reposSlice = createSlice({
             ...state,
             repos: state.repos.filter((repo) => repo.topics.includes(action.payload)),
             load: 3
-        }),
-        clearFilter: (state) => ({
-            ...state,
-            filtered: [],
-            load: 3
         })
     },
     extraReducers: (builder) => {
@@ -58,7 +53,7 @@ const reposSlice = createSlice({
 export const allRepos = state => state.repos.repos;
 export const selectLoad = state => state.repos.load;
 export const filteredRepos = state => state.repos.filtered;
-export const {loadMore, filter, clearFilter, resetRepos} = reposSlice.actions;
+export const {loadMore, filter, resetRepos} = reposSlice.actions;
 export const selectReposToShow = createSelector(
     [selectLoad, allRepos],
     (loadCount, loadedRepos) => {

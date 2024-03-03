@@ -9,6 +9,7 @@ const Repos = () => {
     const { isLoading, repos, load } = useSelector((state) => state.repos)
     const loadedRepos = useSelector(selectReposToShow)
     const dispatch = useDispatch()
+    const loadButton = document.querySelector('.load-button');
 
     const onClickHandler = (e) => {
         if(load + 3 > repos.length){
@@ -21,6 +22,7 @@ const Repos = () => {
         else {
             if(e.target.classList.contains('complete')){
                 e.target.classList.remove('complete')
+                e.target.innerHTML = 'Load More'
             }
             dispatch(loadMore())
         }
@@ -28,8 +30,12 @@ const Repos = () => {
 
     const OnFilter = async (e) => {
         await dispatch(resetRepos())
-        if(e.target.id){
+        if(e.target.id) {
             dispatch(filter(e.target.id))
+        }
+        if(loadButton.classList.contains('complete')){
+            loadButton.classList.remove('complete')
+            loadButton.innerHTML = 'Load More'
         }
     }
 
