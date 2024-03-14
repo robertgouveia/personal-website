@@ -1,0 +1,49 @@
+.about-header {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 24px;
+    align-items: start;
+    padding: 0 16px;
+}
+
+.about-header h3 {
+    color: #555555;
+}
+
+.about-header p {
+    color: #cccccc;
+}
+
+.about-header ul li {
+    list-style: none;
+}
+
+.about-header ul li p {
+    color: #222222;
+}
+
+.about-image {
+    width: 40%;
+    background-image: url('./../images/Myself.jpeg');
+    object-fit: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 200px;
+    filter: grayscale(100);
+}
+
+.about-content {
+    padding: 0 16px;
+    margin-top: 24px;
+}
+
+.about-content h3 {
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.about-content p {
+    color: #555555;
+}
