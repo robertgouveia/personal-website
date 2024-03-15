@@ -8,7 +8,7 @@ const ContactPage = () => {
         <div className='page'>
             <Navbar/>
             <div className='contact-hero'>
-                <h1>Contact Form</h1>
+                <h1>Contact Me</h1>
                 <h4>We Encourage Communication via this Form</h4>
                 <p>We kindly request that you utilize this form exclusively for inquiries related to hiring or
                     collaboration opportunities. Our email is designated for these purposes alone and is not intended

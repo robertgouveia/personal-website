@@ -1,5 +1,5 @@
 export default async function fetchRepos () {
-    const token = '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';
+    const token = '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';
 
     try {
         const response = await fetch('https://api.github.com/users/robertgouveia/repos', {
