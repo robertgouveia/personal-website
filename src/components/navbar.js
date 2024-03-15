@@ -11,7 +11,7 @@ const Navbar = () => {
         <nav>
             <section>
                 <div>
-                    <h1>ROBGEE</h1><span>®</span>
+                    <h1>ROBGEE</h1>
                 </div>
                 <i onClick={onClickHandler} className='fa-solid fa-bars'></i>
             </section>

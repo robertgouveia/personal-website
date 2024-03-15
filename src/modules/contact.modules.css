@@ -1,0 +1,34 @@
+.contact-footer {
+    padding: 0 16px;
+}
+.contact-hero {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+.contact-form {
+    padding: 0 16px;
+}
+.contact-form input {
+    width: 100%;
+    display: block;
+    padding: 8px 4px;
+    margin: 8px 0;
+    border: 1px solid #555555;
+}
+.contact-form textarea {
+    margin-top: 8px;
+    display: block;
+    width: 100%;
+    padding: 8px;
+}
+.contact-form button {
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px 0;
+    background: #333333;
+    border: none;
+    color: #efefef;
+}

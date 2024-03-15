@@ -25,6 +25,7 @@
 
 .about-image {
     width: 40%;
+    max-width: 150px;
     background-image: url('./../images/Myself.jpeg');
     object-fit: cover;
     background-size: 100%;

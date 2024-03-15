@@ -1,6 +1,6 @@
 const Form = () => {
     return (
-        <form>
+        <form className='contact-form'>
             <div>
                 <label htmlFor='firstName'>First Name:</label>
                 <input
@@ -38,6 +38,7 @@ const Form = () => {
                 <textarea
                     name='message'
                     placeholder='Message'
+                    rows='10'
                 />
             </div>
             <button type='submit'>Send Message</button>
